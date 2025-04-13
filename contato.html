@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contato - Jornada 7 Pilares</title>
+    <meta name="description" content="Entre em contato para saber mais sobre a jornada online 'Descubra os 7 Pilares para Transformar Sua Vida em 7 Dias'.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Montserrat:wght@700;900&family=Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+
+    <header class="simple-header">
+        <div class="container">
+            <a href="index.html" class="back-link">&larr; Voltar para a Jornada</a>
+        </div>
+    </header>
+
+    <main class="contact-container container page-content"> <h1>Entre em Contato</h1>
+        <p class="contact-intro">Tem dúvidas sobre a Jornada dos 7 Pilares? Quer conversar sobre como ela pode te ajudar? Use os canais abaixo ou envie sua mensagem pelo formulário.</p>
+
+        <div class="contact-direct-info">
+            <h2>Fale Conosco Diretamente</h2>
+            <p><i class="fas fa-envelope icon"></i> E-mail: <a href="mailto:contato@seusite.com.br">[seuemail@exemplo.com.br]</a></p>
+            <p><i class="fab fa-whatsapp icon"></i> WhatsApp: <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" rel="noopener noreferrer">[Seu Número com DDD]</a></p>
+            <div class="social-icons">
+                <p>Siga nas redes:</p>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form-container">
+            <h2>Deixe sua mensagem:</h2>
+            <form class="contact-form" action="[URL_DO_SEU_SCRIPT_DE_ENVIO]" method="POST">
+                <div class="form-group">
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu E-mail:</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="6" required aria-required="true"></textarea>
+                </div>
+                <div class="form-group form-submit">
+                    <button type="submit" class="button contact-submit-button">Enviar Mensagem</button>
+                </div>
+                 <p class="form-note">Entraremos em contato em breve!</p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer-spirit section--narrow">
+         <div class="container">
+            <p>&copy; <span id="current-year">2025</span> [Nome do Seu Projeto/Instrutor]. Todos os direitos reservados.</p>
+            <p><a href="termos-de-uso.html">Termos de Uso</a> | <a href="politica-de-privacidade.html">Política de Privacidade</a></p>
+             <div class="footer-social">
+                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                 <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                 <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+             </div>
+         </div>
+    </footer>
+
+    <script> document.getElementById('current-year').textContent = new Date().getFullYear(); </script>
+
+</body>
+</html>
