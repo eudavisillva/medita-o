@@ -1,5 +1,6 @@
 /* ==========================================================================
    CSS COMPLETO - Jornada 7 Pilares (Landing Page + Páginas Internas)
+   VERSÃO CORRIGIDA (Price Box, Secure Info + Anteriores)
    ========================================================================== */
 
 /* ==========================================================================
@@ -37,14 +38,14 @@ body {
 
 :root {
   /* -- Paleta de Cores -- */
-  --color-background: #fdfaff; /* Branco levemente Lavanda/Rosa */
-  --color-text: #3f3d56;       /* Roxo/Cinza Escuro para texto */
-  --color-primary: #6a11cb;    /* Roxo Vibrante Principal */
-  --color-primary-dark: #2575fc; /* Azul Royal (para gradientes) */
-  --color-secondary: #8a8899; /* Cinza/Lavanda Secundário */
-  --color-accent: #ffda77;    /* Dourado/Amarelo Claro para Acentos */
-  --color-accent-dark: #f5b74d; /* Dourado mais intenso */
-  --color-light-bg: #f2e9ff;  /* Fundo Alternativo Lilás bem claro */
+  --color-background: #fdfaff;
+  --color-text: #3f3d56;
+  --color-primary: #6a11cb;
+  --color-primary-dark: #2575fc;
+  --color-secondary: #8a8899;
+  --color-accent: #ffda77;
+  --color-accent-dark: #f5b74d;
+  --color-light-bg: #f2e9ff;
   --color-white: #ffffff;
   --color-black-alpha: rgba(0, 0, 0, 0.7);
   --color-border-light: #e0d8f0;
@@ -221,7 +222,7 @@ img, video, svg, picture {
   padding-top: var(--space-xl);
   padding-bottom: var(--space-xl);
   position: relative;
-  overflow: hidden; /* Evita que elementos filhos (ex: BGs animados) causem scroll */
+  overflow: hidden;
 }
 .section--narrow {
   padding-top: var(--space-lg);
@@ -241,14 +242,14 @@ img, video, svg, picture {
 .section--dark-bg p,
 .section--dark-bg li {
   color: rgba(255, 255, 255, 0.85);
-  max-width: none; /* Geralmente não limita largura em fundo escuro */
+  max-width: none;
 }
 .section--dark-bg a { color: var(--color-accent); }
 .section--dark-bg a:hover,
 .section--dark-bg a:focus {
   color: var(--color-white);
 }
-.sr-only { /* Para acessibilidade - esconder visualmente mas manter para leitores de tela */
+.sr-only {
   position: absolute;
   width: 1px; height: 1px;
   padding: 0; margin: -1px;
@@ -265,30 +266,28 @@ img, video, svg, picture {
 
 .hero-spirit {
   position: relative;
-  min-height: 100vh; /* Fallback */
-  min-height: 100dvh; /* Usa altura dinâmica da viewport */
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center; /* Centraliza texto para filhos diretos e inline */
+  text-align: center;
   background: linear-gradient(145deg, #1e134b 5%, #301a64 30%, #6a11cb 75%, #8a4ce0 100%);
   color: var(--color-white);
   overflow: hidden;
   padding: var(--space-lg) var(--space-md);
 }
 
-/* --- Camadas de Fundo Animadas --- */
+/* Camadas de Fundo */
 .hero-bg-layer {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background-position: center; background-repeat: no-repeat; background-size: cover;
-  pointer-events: none; z-index: 1; /* Atrás do conteúdo */
+  pointer-events: none; z-index: 1;
 }
-/* SUBSTITUA 'images/...' pelos caminhos corretos das suas imagens */
 .layer1 { background-image: url('images/nebula-bg.png'); opacity: 0.15; animation: slow-pan 90s linear infinite alternate; }
 .layer2 { background-image: url('images/stars-bg.png'); opacity: 0.3; animation: subtle-sparkle 15s linear infinite alternate; }
-.layer3 { /* Partículas CSS (Exemplo) */
+.layer3 {
    width: 1px; height: 1px; background: transparent;
-   /* Adicione mais sombras para um efeito mais denso */
    box-shadow:
      calc(50vw + 100px) calc(20vh - 50px) 1px 1px rgba(255,255,255,0.8),
      10vw 80vh 0px 0px rgba(255,255,255,0.5), 80vw 50vh 1px 0px rgba(255,255,255,0.7),
@@ -299,16 +298,13 @@ img, video, svg, picture {
    opacity: 0.7;
 }
 
-/* --- Elementos Flutuantes Animados --- */
+/* Elementos Flutuantes */
 .floating-element {
   position: absolute; z-index: 2; opacity: 0;
   animation: float-appear 40s infinite ease-in-out, fade-in-slow var(--anim-duration-slow) ease-out 1s forwards;
   pointer-events: none; will-change: transform, opacity;
 }
-/* Use um SVG ou Imagem para o Lótus */
 .lotus {
-  /* background-image: url('images/lotus.svg'); background-size: contain; background-repeat: no-repeat; */
-  /* Estilo Fallback com gradiente: */
   content: ' '; display: block; width: clamp(50px, 15vmin, 150px); height: clamp(50px, 15vmin, 150px);
   background: radial-gradient(circle, rgba(255,192,203,0.3), rgba(255,105,180,0.5) 60%);
   border-radius: 50%; filter: blur(3px);
@@ -319,42 +315,39 @@ img, video, svg, picture {
 .star1 { top: 15%; right: 15%; animation-delay: 1.5s, 1.5s; animation-duration: 45s, var(--anim-duration-slow); }
 .star2 { top: 60%; left: 5%; animation-delay: 1.8s, 1.8s; animation-duration: 50s, var(--anim-duration-slow); }
 
-/* --- Conteúdo Principal do Hero --- */
+/* Conteúdo Hero */
 .hero-content {
-  position: relative; z-index: 10; /* Acima dos BGs e elementos flutuantes */
+  position: relative; z-index: 10;
   padding-top: var(--space-xl); padding-bottom: var(--space-xxl);
-  width: 100%; max-width: var(--content-max-width-standard); /* Limita largura */
-  margin-left: auto; margin-right: auto; /* Centraliza o bloco */
+  width: 100%; max-width: var(--content-max-width-standard);
+  margin-left: auto; margin-right: auto;
 }
-/* Wrapper para animar o texto como um bloco */
 .hero-text-wrapper {
-  opacity: 0; /* Começa invisível, JS ou animação CSS torna visível */
+  opacity: 0;
 }
-/* Classe para animar entrada (pode ser adicionada via JS ou direto no HTML) */
 .hero-text-wrapper.animate-on-load {
    animation: fade-in-up 1s ease-out 0.5s forwards;
 }
 
-/* --- Título Principal (H1) --- */
+/* Título Principal Hero */
 .hero-title.kinetic-title {
   font-family: var(--font-highlight, var(--font-headings));
-  font-size: clamp(2.5rem, 8vw + 1rem, 8rem);
+  font-size: clamp(2.5rem, 7.5vw + 1rem, 7.5rem);
   font-weight: 900;
   color: var(--color-white);
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 25px rgba(138, 76, 224, 0.4);
   margin-bottom: var(--space-sm);
-  opacity: 0; /* JS vai tornar visível ao dividir em spans */
+  opacity: 0;
   line-height: 1.15;
-  white-space: normal; /* Permite quebra de linha */
-  text-align: center; /* Centraliza texto */
+  white-space: normal;
+  text-align: center;
   width: 100%;
-  max-width: 90%; /* Limite para não colar nas bordas */
-  margin-left: auto; /* Centraliza o bloco H1 */
-  margin-right: auto; /* Centraliza o bloco H1 */
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
-/* Estilo das letras individuais (geradas via JS) */
 .kinetic-title span {
-  display: inline-block; /* Essencial para transform/animação individual */
+  display: inline-block;
   opacity: 0;
   transform: translateY(80%) rotateX(-90deg) scale(0.8);
   transform-origin: bottom center;
@@ -362,7 +355,7 @@ img, video, svg, picture {
   will-change: transform, opacity;
 }
 
-/* --- Subtítulo e Descrição --- */
+/* Subtítulo e Descrição Hero */
 .hero-subtitle {
   font-size: clamp(1.2rem, 3vw + 0.5rem, 2.2rem);
   color: var(--color-accent);
@@ -370,80 +363,72 @@ img, video, svg, picture {
   margin-bottom: var(--space-md);
   font-weight: 700;
   text-shadow: 1px 1px 3px var(--color-black-alpha);
-  /* Herda text-align: center de .hero-spirit */
 }
-.hero-subtitle .highlight { /* Destaque dentro do subtítulo */
+.hero-subtitle .highlight {
   color: var(--color-white);
-  font-family: inherit; /* Mantém a fonte do subtítulo */
+  font-family: inherit;
 }
 .hero-description {
   font-size: clamp(1rem, 1.5vw + 0.5rem, 1.3rem);
   color: rgba(255, 255, 255, 0.9);
-  max-width: var(--content-max-width-narrow); /* Limita largura para leitura */
-  margin-left: auto; margin-right: auto; /* Centraliza o bloco */
-  margin-bottom: var(--space-lg); /* Espaço antes do botão */
-  /* Herda text-align: center de .hero-spirit */
+  max-width: var(--content-max-width-narrow);
+  margin-left: auto; margin-right: auto;
+  margin-bottom: var(--space-lg);
 }
 
-/* --- Botão CTA --- */
+/* Botão CTA Hero */
 .hero-cta {
-  /* Herda estilos de .button */
-  padding: var(--space-md) var(--space-xl); /* Padding maior */
-  font-size: clamp(1.1rem, 1.8vw + 0.5rem, 1.5rem); /* Fonte maior */
-  box-shadow: 0 5px 20px rgba(40, 10, 80, 0.4); /* Sombra específica */
-  /* Centralizado devido ao text-align: center do .hero-spirit */
+  padding: var(--space-md) var(--space-xl);
+  font-size: clamp(1.1rem, 1.8vw + 0.5rem, 1.5rem);
+  box-shadow: 0 5px 20px rgba(40, 10, 80, 0.4);
 }
-.hero-cta.pulse { /* Adiciona animação de pulso */
+.hero-cta.pulse {
   animation: pulse-animation 2s infinite ease-in-out;
 }
 
-/* --- Indicador de Scroll Down --- */
+/* Indicador Scroll Down */
 .scroll-down-indicator {
   position: absolute;
   bottom: var(--space-md);
   left: 50%;
-  transform: translateX(-50%); /* Centraliza horizontalmente */
+  transform: translateX(-50%); /* Método correto para centralizar */
   width: auto;
   color: var(--color-white);
-  text-align: center; /* Centraliza texto e ícone internos */
+  text-align: center;
   z-index: 15;
   opacity: 0;
   animation: fade-in-up 1s ease-out 2.5s forwards;
   pointer-events: none;
 }
 .scroll-down-indicator span {
-  display: block; /* Texto acima do ícone */
+  display: block;
   font-size: 0.8rem;
   margin-bottom: var(--space-xs);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-shadow: 1px 1px 2px var(--color-black-alpha);
 }
-.scroll-down-indicator i { /* Ícone da seta */
+.scroll-down-indicator i {
   font-size: 1.2rem;
   animation: bounce-down 1.5s infinite ease-out;
-  display: block; /* Garante quebra de linha se necessário */
+  display: block;
 }
 
-/* --- Ajustes Media Query para Título Hero --- */
+/* Media Queries Hero */
 @media (min-width: 768px) {
   .hero-title.kinetic-title {
-    font-size: clamp(3.5rem, 6vw + 1rem, 7.5rem); /* Ajuste para Desktop */
+    font-size: clamp(3.5rem, 6vw + 1rem, 7rem);
     line-height: 1.1;
     max-width: 85%;
   }
   .hero-subtitle { font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem); }
   .hero-description { font-size: clamp(1.1rem, 1.2vw + 0.5rem, 1.4rem); }
 }
-
 @media (min-width: 1200px) {
   .hero-title.kinetic-title {
-    font-size: clamp(4rem, 5vw + 1rem, 8rem); /* Ajuste para Telas Maiores */
+    font-size: clamp(4rem, 5vw + 1rem, 7.5rem);
   }
 }
-
-/* Mouse Glow Effect Opcional */
-/* .hero-spirit::after { ... } */
 
 /* ==========================================================================
    Fim da Seção 7 (Hero Section)
@@ -454,64 +439,49 @@ img, video, svg, picture {
    8. Landing Page - Estilos e Animações das Seções de Conteúdo
    ========================================================================== */
 
-/* --- Animação Geral de Scroll --- */
-/* Estado Inicial Escondido */
+/* Animação Scroll */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(50px) scale(0.98);
   transition: opacity var(--anim-duration-medium) ease-out, transform var(--anim-duration-medium) var(--anim-easing);
   will-change: opacity, transform;
 }
-/* Estado Final Visível (acionado via JS com classe .is-visible) */
 .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-/* Classes de Delay (aplicar no HTML) */
 .reveal-on-scroll.delay-1 { transition-delay: 0.1s; }
 .reveal-on-scroll.delay-2 { transition-delay: 0.2s; }
 .reveal-on-scroll.delay-3 { transition-delay: 0.3s; }
 .reveal-on-scroll.delay-4 { transition-delay: 0.4s; }
 .reveal-on-scroll.delay-5 { transition-delay: 0.5s; }
 
-
-/* --- Seção Problema --- */
+/* Seção Problema */
 .problem-section { background-color: var(--color-light-bg); }
-/* Assumindo que h2 é o título principal da seção */
 .problem-section h2 {
-  text-align: center; /* CORRIGIDO: Centraliza título */
+  text-align: center;
   max-width: var(--content-max-width-standard);
-  margin-left: auto;
-  margin-right: auto;
-  /* Herda outros estilos de h2 base */
+  margin-left: auto; margin-right: auto;
 }
-.problem-section h2.alt { /* Se houver variação */
-  color: var(--color-primary-dark);
-}
+.problem-section h2.alt { color: var(--color-primary-dark); }
 .problem-section .highlight { color: var(--color-primary); font-family: var(--font-highlight, inherit); font-weight: bold; }
 .problem-points { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-md) var(--space-lg); margin: var(--space-lg) auto; max-width: var(--content-max-width-standard); }
 .problem-points .point { font-size: clamp(1rem, 1.5vw + 0.5rem, 1.3rem); font-weight: 700; color: var(--color-secondary); display: flex; align-items: center; gap: var(--space-xs); opacity: 0; transform: translateX(-30px); }
 .reveal-on-scroll.is-visible .problem-points .point { animation: slide-in-left var(--anim-duration-medium) ease-out forwards; }
-/* Delays para animação escalonada */
 .reveal-on-scroll.is-visible .problem-points .point:nth-child(1) { animation-delay: 0.2s; }
 .reveal-on-scroll.is-visible .problem-points .point:nth-child(2) { animation-delay: 0.4s; }
 .reveal-on-scroll.is-visible .problem-points .point:nth-child(3) { animation-delay: 0.6s; }
-/* etc, se houver mais pontos */
 .problem-points .point i { color: var(--color-primary); font-size: 1.2em; opacity: 0.8; }
 .spin-icon { animation: spin 4s linear infinite; }
 .fade-icon { animation: fade-in-out 3s infinite ease-in-out; }
 .pulse-icon { animation: pulse-simple 1.5s infinite ease-in-out; }
 
-/* --- Seção 7 Pilares --- */
+/* Seção 7 Pilares */
 .pillars-section { background: linear-gradient(180deg, var(--color-white) 0%, var(--color-light-bg) 100%); }
-/* Assumindo h2 como título */
-.pillars-section h2 {
-  text-align: center; /* Garante centralização */
-}
+.pillars-section h2 { text-align: center; }
 .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-lg); }
 .pillar-card { background-color: var(--color-white); border-radius: 15px; padding: var(--space-md); text-align: center; box-shadow: 0 8px 25px rgba(106, 17, 203, 0.08); border: 1px solid transparent; position: relative; overflow: hidden; opacity: 0; transform: translateY(40px); transition: all var(--anim-duration-medium) var(--anim-easing); }
 .reveal-on-scroll.is-visible .pillar-card { opacity: 1; transform: translateY(0); }
-/* Delays para animação escalonada */
 .reveal-on-scroll.is-visible .pillar-card:nth-child(1) { transition-delay: 0.05s; }
 .reveal-on-scroll.is-visible .pillar-card:nth-child(2) { transition-delay: 0.1s; }
 .reveal-on-scroll.is-visible .pillar-card:nth-child(3) { transition-delay: 0.15s; }
@@ -522,97 +492,97 @@ img, video, svg, picture {
 .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity var(--anim-duration-fast) ease-out, transform var(--anim-duration-fast) ease-out; z-index: 0; transform: scale(0.8) rotate(-10deg); border-radius: inherit; }
 .pillar-card:hover::before { opacity: 1; transform: scale(1) rotate(0deg); }
 .pillar-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px rgba(106, 17, 203, 0.15); border-color: var(--color-accent); }
-/* Gradientes de fundo para hover (via ::before) */
-.pillar-1::before { background: linear-gradient(135deg, #f8e6ff, #e7c6ff); }
-.pillar-2::before { background: linear-gradient(135deg, #ffe6e6, #ffc6c6); }
-.pillar-3::before { background: linear-gradient(135deg, #fff0e6, #ffd1b3); }
-.pillar-4::before { background: linear-gradient(135deg, #e6fff0, #b3ffe0); }
-.pillar-5::before { background: linear-gradient(135deg, #e6f2ff, #b3d1ff); }
-.pillar-6::before { background: linear-gradient(135deg, #ffe6ff, #ffb3ff); }
-.pillar-7::before { background: linear-gradient(135deg, #fff8e6, #ffebb3); }
+.pillar-1::before { background: linear-gradient(135deg, #f8e6ff, #e7c6ff); } .pillar-2::before { background: linear-gradient(135deg, #ffe6e6, #ffc6c6); } .pillar-3::before { background: linear-gradient(135deg, #fff0e6, #ffd1b3); } .pillar-4::before { background: linear-gradient(135deg, #e6fff0, #b3ffe0); } .pillar-5::before { background: linear-gradient(135deg, #e6f2ff, #b3d1ff); } .pillar-6::before { background: linear-gradient(135deg, #ffe6ff, #ffb3ff); } .pillar-7::before { background: linear-gradient(135deg, #fff8e6, #ffebb3); }
 .pillar-icon { font-size: clamp(2.5rem, 6vw, 3.5rem); margin-bottom: var(--space-sm); display: inline-block; position: relative; z-index: 1; transition: transform var(--anim-duration-fast) ease-out; }
 .pillar-card:hover .pillar-icon { transform: scale(1.1) rotate(-5deg); }
 .pillar-number { position: absolute; top: var(--space-sm); right: var(--space-sm); font-size: 0.8rem; font-weight: 700; color: var(--color-secondary); opacity: 0.5; z-index: 1; }
 .pillar-card h3 { font-size: clamp(1.1rem, 2vw + 0.7rem, 1.4rem); margin-bottom: var(--space-xs); position: relative; z-index: 1; color: var(--color-primary); }
-.pillar-card p { font-size: clamp(0.85rem, 1vw + 0.5rem, 1rem); color: var(--color-secondary); line-height: 1.5; position: relative; z-index: 1; max-width: none; /* Sobrescreve max-width global */ }
-/* Cores dos ícones */
+.pillar-card p { font-size: clamp(0.85rem, 1vw + 0.5rem, 1rem); color: var(--color-secondary); line-height: 1.5; position: relative; z-index: 1; max-width: none; }
 .pillar-1 .pillar-icon { color: #a052d8; } .pillar-2 .pillar-icon { color: #ff4757; } .pillar-3 .pillar-icon { color: #ffa502; } .pillar-4 .pillar-icon { color: #2ecc71; } .pillar-5 .pillar-icon { color: #3498db; } .pillar-6 .pillar-icon { color: #f368e0; } .pillar-7 .pillar-icon { color: var(--color-accent-dark); }
 
-
-/* --- Seção Benefícios --- */
+/* Seção Benefícios */
 .benefits-section { background-color: var(--color-light-bg); }
-/* Assumindo h2 como título */
-.benefits-section h2 {
-  text-align: center; /* CORRIGIDO: Centraliza título */
-}
-.benefits-section h2.alt { /* Se houver variação */
-   color: var(--color-primary-dark);
-}
-.benefits-list { margin-top: var(--space-lg); /* Reutiliza .responsive-grid */ }
+.benefits-section h2 { text-align: center; }
+.benefits-section h2.alt { color: var(--color-primary-dark); }
+.benefits-list { margin-top: var(--space-lg); }
 .benefit-item { background: var(--color-white); padding: var(--space-lg) var(--space-md); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; opacity: 0; transform: scale(0.9); will-change: transform, opacity; }
 .reveal-on-scroll.is-visible .benefit-item { animation: scale-up-fade-in var(--anim-duration-medium) var(--anim-easing) forwards; }
-/* Delays para animação escalonada */
 .reveal-on-scroll.is-visible .benefit-item:nth-child(1) { animation-delay: 0.1s; }
 .reveal-on-scroll.is-visible .benefit-item:nth-child(2) { animation-delay: 0.2s; }
 .reveal-on-scroll.is-visible .benefit-item:nth-child(3) { animation-delay: 0.3s; }
 .reveal-on-scroll.is-visible .benefit-item:nth-child(4) { animation-delay: 0.4s; }
-/* etc. */
 .benefit-item .benefit-icon { font-size: clamp(2.8rem, 7vw, 4rem); color: var(--color-accent); margin-bottom: var(--space-sm); display: inline-block; transition: transform var(--anim-duration-fast) ease-in-out; }
 .benefit-item:hover .benefit-icon { transform: translateY(-5px) scale(1.1); }
 .benefit-item h4 { font-family: var(--font-headings); font-size: clamp(1.2rem, 2vw + 0.8rem, 1.5rem); color: var(--color-primary); margin-bottom: var(--space-xs); }
-.benefit-item p { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); color: var(--color-secondary); max-width: none; /* Sobrescreve max-width global */ }
+.benefit-item p { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); color: var(--color-secondary); max-width: none; }
 
-/* --- Seção Testemunhos --- */
-.testimonials-section { /* Fundo opcional */ }
-/* Assumindo h2 como título */
-.testimonials-section h2 {
-  text-align: center; /* CORRIGIDO: Centraliza título */
-}
+/* Seção Testemunhos */
+.testimonials-section {}
+.testimonials-section h2 { text-align: center; }
 .testimonial-carousel { display: flex; gap: var(--space-md); overflow-x: auto; padding-bottom: var(--space-md); scroll-snap-type: x mandatory; max-width: 100%; margin-top: var(--space-lg); }
 .testimonial-card { flex: 0 0 clamp(280px, 80%, 400px); scroll-snap-align: center; background-color: rgba(255, 255, 255, 0.95); padding: var(--space-lg); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 4px solid var(--color-accent); opacity: 0; transform: translateX(50px); will-change: transform, opacity; }
 .reveal-on-scroll.is-visible .testimonial-card { animation: slide-in-right var(--anim-duration-medium) ease-out forwards; }
-/* Delays para animação escalonada */
 .reveal-on-scroll.is-visible .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
 .reveal-on-scroll.is-visible .testimonial-card:nth-child(2) { animation-delay: 0.25s; }
 .reveal-on-scroll.is-visible .testimonial-card:nth-child(3) { animation-delay: 0.4s; }
-/* etc. */
-.testimonial-card p { font-family: var(--font-highlight, 'Garamond', serif); font-size: clamp(1rem, 1.5vw + 0.5rem, 1.2rem); line-height: 1.5; margin-bottom: var(--space-sm); color: var(--color-text); font-style: italic; max-width: none; /* Sobrescreve max-width global */ text-align: left; /* Garante alinhamento à esquerda para o texto principal */ }
-.testimonial-card footer { font-weight: 700; color: var(--color-primary); display: block; margin-bottom: var(--space-xs); font-style: normal; font-family: var(--font-primary); text-align: center; /* CORRIGIDO: Centraliza autor */ }
-.stars { color: var(--color-accent-dark); font-size: 1rem; text-align: center; /* CORRIGIDO: Centraliza estrelas */ }
-
+.testimonial-card p { font-family: var(--font-highlight, 'Garamond', serif); font-size: clamp(1rem, 1.5vw + 0.5rem, 1.2rem); line-height: 1.5; margin-bottom: var(--space-sm); color: var(--color-text); font-style: italic; max-width: none; text-align: left; }
+.testimonial-card footer { font-weight: 700; color: var(--color-primary); display: block; margin-bottom: var(--space-xs); font-style: normal; font-family: var(--font-primary); text-align: center; }
+.stars { color: var(--color-accent-dark); font-size: 1rem; text-align: center; }
 
 /* --- Seção Oferta/CTA Final --- */
 .offer-section-spirit { background: linear-gradient(180deg, var(--color-light-bg) 0%, var(--color-white) 100%); position: relative; overflow: hidden; }
-/* Assumindo h2/h3 é o .offer-title */
-.offer-section-spirit h2 {
-  text-align: center; /* Garante centralização */
-}
+.offer-section-spirit h2 { text-align: center; }
 .offer-section-spirit .container.content-wrapper { max-width: var(--content-max-width-standard); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-lg); }
 .offer-content { flex: 1 1 min(350px, 100%); text-align: center; opacity: 0; transform: scale(0.95); will-change: transform, opacity; }
 .offer-image-container { flex: 1 1 min(300px, 100%); display: flex; justify-content: center; align-items: center; opacity: 0; transform: translateX(50px); will-change: transform, opacity; }
 .reveal-on-scroll.is-visible .offer-content { animation: scale-up-fade-in var(--anim-duration-medium) ease-out 0.1s forwards; }
 .reveal-on-scroll.is-visible .offer-image-container { animation: slide-in-right var(--anim-duration-medium) ease-out 0.3s forwards; }
-.offer-title { color: var(--color-primary); margin-bottom: var(--space-xs); /* Centralizado pelo .offer-content */ }
-.offer-subtitle { font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem); color: var(--color-secondary); margin: 0 auto var(--space-md) auto; max-width: var(--content-max-width-narrow); /* Centralizado pelo text-align e margin auto */ }
-.price-box { background: var(--color-white); padding: var(--space-md); border-radius: 10px; box-shadow: 0 0 15px rgba(106, 17, 203, 0.1); margin-bottom: var(--space-md); display: inline-block; /* Centralizado pelo text-align pai */ border: 1px solid var(--color-light-bg); }
+.offer-title { color: var(--color-primary); margin-bottom: var(--space-xs); }
+.offer-subtitle { font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem); color: var(--color-secondary); margin: 0 auto var(--space-md) auto; max-width: var(--content-max-width-narrow); }
+
+/* --- Price Box --- AJUSTADO --- */
+.price-box {
+  background: var(--color-white);
+  /* Padding ajustado para mais respiro */
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 10px;
+  /* Sombra mais pronunciada e suave com cor do tema */
+  box-shadow: 0 5px 25px rgba(106, 17, 203, 0.15), 0 2px 10px rgba(106, 17, 203, 0.1);
+  margin-bottom: var(--space-md);
+  display: inline-block; /* Permite centralização pelo text-align do pai */
+  border: none; /* Removida borda simples */
+  transition: all var(--anim-duration-fast) ease; /* Transição para hover */
+}
+.price-box:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(106, 17, 203, 0.2), 0 4px 15px rgba(106, 17, 203, 0.15);
+}
 .price-label { display: block; font-size: 0.9rem; color: var(--color-secondary); }
 .price-value { display: block; font-family: var(--font-headings); font-size: clamp(2.5rem, 6vw + 1rem, 4.5rem); font-weight: 900; color: var(--color-primary-dark); line-height: 1.1; }
 .price-installments { display: block; font-size: 1rem; color: var(--color-secondary); }
-.offer-includes { text-align: left; /* Alinha itens da lista à esquerda */ max-width: 400px; margin: var(--space-md) auto; /* Centraliza o bloco da lista */ padding-left: var(--space-md); /* Espaço para ícones */ }
+
+.offer-includes { text-align: left; max-width: 400px; margin: var(--space-md) auto; padding-left: var(--space-md); }
 .offer-includes h4 { font-family: var(--font-headings); font-size: 1.2rem; color: var(--color-primary); margin-bottom: var(--space-sm); text-align: center; }
 .offer-includes ul { list-style: none; padding: 0; }
-.offer-includes li { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); margin-bottom: var(--space-xs); color: var(--color-text); display: flex; align-items: center; max-width: none; /* Garante que o li ocupe espaço */ }
-.offer-includes li i { color: var(--color-accent-dark); margin-right: var(--space-xs); width: 1.2em; text-align: center; flex-shrink: 0; /* Evita que o ícone encolha */ }
-.offer-cta { margin-top: var(--space-md); padding: var(--space-md) var(--space-xl); font-size: clamp(1.2rem, 2vw + 0.6rem, 1.6rem); /* Centralizado pelo text-align pai */ }
+.offer-includes li { font-size: clamp(0.9rem, 1vw + 0.5rem, 1rem); margin-bottom: var(--space-xs); color: var(--color-text); display: flex; align-items: center; max-width: none; }
+.offer-includes li i { color: var(--color-accent-dark); margin-right: var(--space-xs); width: 1.2em; text-align: center; flex-shrink: 0; }
+.offer-cta { margin-top: var(--space-md); padding: var(--space-md) var(--space-xl); font-size: clamp(1.2rem, 2vw + 0.6rem, 1.6rem); }
 .offer-cta.pulse-grow:hover, .offer-cta.pulse-grow:focus { animation: pulse-grow-animation 0.5s ease-out forwards; }
-.secure-info { font-size: clamp(0.8rem, 1vw + 0.4rem, 0.95rem); margin-top: var(--space-sm); color: var(--color-secondary); /* Centralizado pelo text-align pai */ }
-.secure-info .fa-lock { color: #28a745; margin-right: 0.3em;}
-.transform-visual { width: clamp(250px, 40vmin, 400px); height: clamp(250px, 40vmin, 400px); border-radius: 50%; background: linear-gradient(45deg, var(--color-accent), var(--color-primary), var(--color-primary-dark), var(--color-accent-dark)); background-size: 300% 300%; animation: gradient-shift 10s ease infinite alternate; box-shadow: 0 0 30px rgba(106, 17, 203, 0.3), 0 0 50px rgba(255, 218, 119, 0.2); margin: 0 auto; /* Centraliza se for display block/flex item */ }
 
+/* --- Secure Info --- AJUSTADO --- */
+.secure-info {
+  font-size: clamp(0.8rem, 1vw + 0.4rem, 0.95rem);
+  margin-top: var(--space-sm);
+  color: var(--color-secondary);
+  text-align: center; /* CORRIGIDO: Garante centralização do texto e ícone */
+}
+.secure-info .fa-lock { color: #28a745; margin-right: 0.3em; vertical-align: middle; /* Melhora alinhamento vertical do ícone */ }
+
+.transform-visual { width: clamp(250px, 40vmin, 400px); height: clamp(250px, 40vmin, 400px); border-radius: 50%; background: linear-gradient(45deg, var(--color-accent), var(--color-primary), var(--color-primary-dark), var(--color-accent-dark)); background-size: 300% 300%; animation: gradient-shift 10s ease infinite alternate; box-shadow: 0 0 30px rgba(106, 17, 203, 0.3), 0 0 50px rgba(255, 218, 119, 0.2); margin: 0 auto; }
 
 /* --- Footer da Landing Page --- */
-.footer-spirit { background-color: #3f3d56; color: rgba(255, 255, 255, 0.7); text-align: center; /* Padding herdado de .section ou .section--narrow */ }
-.footer-spirit p { font-size: clamp(0.8rem, 1vw + 0.4rem, 0.9rem); margin-bottom: var(--space-xs); max-width: none; /* Sobrescreve max-width global */ color: inherit; }
+.footer-spirit { background-color: #3f3d56; color: rgba(255, 255, 255, 0.7); text-align: center; }
+.footer-spirit p { font-size: clamp(0.8rem, 1vw + 0.4rem, 0.9rem); margin-bottom: var(--space-xs); max-width: none; color: inherit; }
 .footer-spirit a { color: var(--color-accent); }
 .footer-spirit a:hover, .footer-spirit a:focus { color: var(--color-white); }
 .footer-social { margin-top: var(--space-sm); }
@@ -656,7 +626,7 @@ img, video, svg, picture {
   font-family: var(--font-headings, 'Montserrat', sans-serif);
   font-size: clamp(2rem, 5vw + 0.8rem, 3.5rem);
   color: var(--color-primary);
-  text-align: center; /* OK */
+  text-align: center;
   margin-bottom: var(--space-sm);
   padding-bottom: var(--space-sm);
   border-bottom: 2px solid var(--color-accent);
@@ -664,18 +634,18 @@ img, video, svg, picture {
 }
 /* Data e Intro Contato */
 .terms-container .last-updated, .privacy-container .last-updated {
-  text-align: center; /* OK */
+  text-align: center;
   font-size: clamp(0.8rem, 1vw + 0.4rem, 0.9rem);
   color: var(--color-secondary);
   margin-bottom: var(--space-lg);
 }
 .contact-container .contact-intro {
-  text-align: center; /* OK */
+  text-align: center;
   font-size: clamp(1rem, 1.5vw + 0.5rem, 1.2rem);
   color: var(--color-secondary);
   margin-bottom: var(--space-xl);
   max-width: var(--content-max-width-narrow);
-  margin-left: auto; margin-right: auto; /* Centraliza bloco */
+  margin-left: auto; margin-right: auto;
 }
 
 /* Seções (Termos/Privacidade) */
@@ -684,62 +654,54 @@ img, video, svg, picture {
 }
 /* Títulos das Seções (H2) */
 .terms-container h2, .privacy-container h2 {
-  /* Estilos base herdados de h2 */
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-xs);
   border-bottom: 1px solid var(--color-border-light);
-  text-align: left; /* Mantém alinhamento à esquerda para conteúdo legal */
+  text-align: left;
 }
 .contact-container h2 {
-  /* Herda estilos base de h2 */
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-xs);
-  /* Centralização tratada abaixo */
 }
 .contact-direct-info h2, .contact-form-container h2 {
-  text-align: center; /* OK */
-  border-bottom: none; /* Sobrescreve borda se houver */
-  margin-bottom: var(--space-sm); /* Ajuste específico de margem */
+  text-align: center;
+  border-bottom: none;
+  margin-bottom: var(--space-sm);
 }
 
-/* Parágrafos (Todas páginas internas) */
+/* Parágrafos */
 .terms-container p,
 .privacy-container p,
 .contact-container p:not(.contact-intro):not(.last-updated):not(.form-note) {
-  /* Herda estilos base de p */
   line-height: 1.7;
-  /* max-width já definido na base de 'p', OK para estes */
-  /* Alinhamento padrão é left, OK */
 }
 .terms-container p strong,
 .privacy-container p strong,
 .contact-container p strong {
-  color: var(--color-text); /* Garante cor, mesmo que 'p' mude */
+  color: var(--color-text);
   font-weight: 700;
 }
-/* Listas (Termos/Privacidade) */
+/* Listas */
 .terms-container ul, .terms-container ol,
 .privacy-container ul, .privacy-container ol {
   margin-bottom: var(--space-sm);
-  padding-left: var(--space-lg); /* Espaço para marcadores/números */
+  padding-left: var(--space-lg);
   max-width: var(--content-max-width-narrow, 70ch);
-  list-style-position: outside; /* Marcadores fora do texto */
-  /* Alinhamento padrão left, OK */
+  list-style-position: outside;
 }
 .terms-container li, .privacy-container li {
-  /* Herda estilos base de li */
   line-height: 1.7;
-  padding-left: var(--space-xs); /* Pequeno espaço após marcador */
-  max-width: none; /* Remove max-width dentro da lista */
+  padding-left: var(--space-xs);
+  max-width: none;
 }
 .terms-container ul li::marker,
 .privacy-container ul li::marker {
-  color: var(--color-primary); /* Cor dos marcadores */
+  color: var(--color-primary);
 }
 
-/* Estilos Específicos Adicionais para Contato */
+/* Contato Específico */
 .contact-direct-info {
-  text-align: center; /* OK */
+  text-align: center;
   margin-bottom: var(--space-xl);
   padding: var(--space-lg);
   background-color: var(--color-light-bg);
@@ -748,7 +710,7 @@ img, video, svg, picture {
 }
 .contact-direct-info h2 { color: var(--color-primary-dark); }
 .contact-direct-info p {
-  max-width: none; /* Sobrescreve max-width global */
+  max-width: none;
   margin-bottom: var(--space-sm);
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem);
   color: var(--color-text);
@@ -758,7 +720,7 @@ img, video, svg, picture {
   margin-right: var(--space-xs);
   width: 1.3em;
   text-align: center;
-  display: inline-block; /* Para alinhar corretamente com texto */
+  display: inline-block;
   vertical-align: middle;
 }
 .contact-direct-info a {
@@ -774,12 +736,11 @@ img, video, svg, picture {
 
 .contact-form-container {
   max-width: var(--content-max-width-narrow, 700px);
-  margin: var(--space-xl) auto 0 auto; /* Centraliza container */
+  margin: var(--space-xl) auto 0 auto;
 }
-/* h2 já centralizado acima */
 .contact-form .form-group {
   margin-bottom: var(--space-md);
-  text-align: left; /* Alinha label e input à esquerda */
+  text-align: left;
 }
 .contact-form label {
   display: block;
@@ -793,12 +754,12 @@ img, video, svg, picture {
 .contact-form textarea {
   width: 100%;
   padding: var(--space-sm);
-  border: 1px solid var(--color-border-light); /* Usar variável de borda */
+  border: 1px solid var(--color-border-light);
   border-radius: 8px;
   font-family: var(--font-primary);
   font-size: clamp(0.95rem, 1vw + 0.5rem, 1.05rem);
   line-height: 1.5;
-  background-color: var(--color-white); /* Fundo branco para destaque */
+  background-color: var(--color-white);
   color: var(--color-text);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -814,16 +775,15 @@ img, video, svg, picture {
   min-height: 150px;
 }
 .contact-form .form-submit {
-  text-align: center; /* Centraliza o botão */
+  text-align: center;
   margin-top: var(--space-lg);
 }
 .contact-form .contact-submit-button {
-  /* Herda estilos de .button */
-  padding: var(--space-md) var(--space-xl); /* Padding específico */
-  font-size: clamp(1rem, 1.3vw + 0.5rem, 1.3rem); /* Tamanho específico */
+  padding: var(--space-md) var(--space-xl);
+  font-size: clamp(1rem, 1.3vw + 0.5rem, 1.3rem);
 }
 .form-note {
-  text-align: center; /* OK */
+  text-align: center;
   font-style: italic;
   margin-top: var(--space-md);
   font-size: clamp(0.85rem, 1vw + 0.4rem, 0.95rem);
@@ -835,10 +795,10 @@ img, video, svg, picture {
 .contact-container > *:last-child {
   margin-bottom: 0;
 }
-.terms-container + footer, /* Seleciona footer que é irmão adjacente */
+.terms-container + footer,
 .privacy-container + footer,
 .contact-container + footer {
-  margin-top: var(--space-xl); /* Espaço antes do rodapé */
+  margin-top: var(--space-xl);
 }
 
 
@@ -846,7 +806,7 @@ img, video, svg, picture {
    11. Media Queries para Casos Extremos
    ========================================================================== */
 
-/* -- Preferências de Movimento Reduzido -- */
+/* Preferências de Movimento Reduzido */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -855,18 +815,17 @@ img, video, svg, picture {
     scroll-behavior: auto !important;
     animation-delay: -0.01ms !important;
   }
-  .kinetic-title span, .floating-element, .spin-icon, .pulse-icon, .fade-icon, .pillar-card, .benefit-item, .reveal-on-scroll, .hero-bg-layer, .transform-visual {
+  .kinetic-title span, .floating-element, .spin-icon, .pulse-icon, .fade-icon, .pillar-card, .benefit-item, .reveal-on-scroll, .hero-bg-layer, .transform-visual, .price-box { /* Adicionado .price-box */
     animation: none !important;
     transition: none !important;
-    opacity: 1 !important; /* Garante visibilidade */
-    transform: none !important; /* Remove transformações */
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
-/* -- Telas Muito Pequenas (< 360px) -- */
+/* Telas Muito Pequenas (< 360px) */
 @media (max-width: 360px) {
-  html { font-size: 87.5%; } /* Reduz tamanho base da fonte */
+  html { font-size: 87.5%; }
 
-  /* Esconde elementos puramente decorativos ou que ocupam muito espaço */
   .hide-on-small-screen,
   .floating-element,
   .hero-bg-layer.layer1,
@@ -875,7 +834,7 @@ img, video, svg, picture {
     display: none !important;
   }
 
-  :root { /* Simplifica/reduz espaçamento */
+  :root {
     --space-sm: clamp(0.5rem, 1vw + 0.25rem, 0.75rem);
     --space-md: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
     --space-lg: clamp(1rem, 2.5vw + 0.5rem, 1.5rem);
@@ -891,26 +850,25 @@ img, video, svg, picture {
     padding-top: var(--space-md);
     padding-bottom: var(--space-lg);
   }
-  h1, .h1-style { font-size: clamp(1.8rem, 7vw + 1rem, 3rem); } /* Ajusta H1 geral */
-  h2, .h2-style { font-size: clamp(1.4rem, 5vw + 0.8rem, 2.2rem); } /* Ajusta H2 geral */
+  h1, .h1-style { font-size: clamp(1.8rem, 7vw + 1rem, 3rem); }
+  h2, .h2-style { font-size: clamp(1.4rem, 5vw + 0.8rem, 2.2rem); }
 
-  /* Ajustes específicos */
-  .hero-title.kinetic-title { font-size: clamp(2.2rem, 12vw + 1rem, 5rem); max-width: 95%; }
-  .hero-subtitle { font-size: clamp(1rem, 4vw + 0.5rem, 1.8rem); }
+  .hero-title.kinetic-title {
+    font-size: clamp(1.8rem, 10vw + 0.8rem, 4.5rem);
+    max-width: 95%;
+    line-height: 1.2;
+  }
+  .hero-subtitle { font-size: clamp(1rem, 4vw + 0.5rem, 1.6rem); }
   .pillar-card { padding: var(--space-sm); }
   .testimonial-card { flex-basis: clamp(240px, 90%, 350px); padding: var(--space-md); }
-  .button, .hero-cta { padding: var(--space-xs) var(--space-md); font-size: clamp(0.8rem, 1vw + 0.5rem, 1rem); } /* Botões menores */
+  .button, .hero-cta { padding: var(--space-xs) var(--space-md); font-size: clamp(0.8rem, 1vw + 0.5rem, 1rem); }
+  .price-box { padding: var(--space-sm) var(--space-md); } /* Menos padding no preço */
+  .price-value { font-size: clamp(2rem, 5vw + 1rem, 3.5rem); } /* Valor menor */
+  .offer-cta { padding: var(--space-sm) var(--space-lg); font-size: clamp(1rem, 1.5vw + 0.5rem, 1.4rem); } /* CTA menor */
 }
-/* -- Telas Muito Largas (> 2000px) -- */
-/* @media (min-width: 2000px) {
-     html { font-size: 105%; } // Opcional: Aumentar fonte base
-     :root {
-       --container-max-width-full: 1800px; // Opcional: Limitar largura máxima um pouco mais
-     }
-   } */
 
 /* ==========================================================================
-   12. Keyframes de Animação (Todos reunidos aqui)
+   12. Keyframes de Animação
    ========================================================================== */
 
 @keyframes slow-pan { 0% { transform: scale(1) translateX(-2%) rotate(-1deg); } 100% { transform: scale(1.1) translateX(2%) rotate(1deg); } }
